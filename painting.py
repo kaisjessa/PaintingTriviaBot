@@ -1,0 +1,99 @@
+import urllib.request
+import json
+import random
+import pandas as pd
+
+  
+# https://collectionapi.metmuseum.org/public/collection/v1/search?isHighlight=true&q=sunflowers
+# https://collectionapi.metmuseum.org/public/collection/v1/objects/[objectID]
+
+# chooses random painting id searched with args
+# saves painting image to folder
+
+def choose_painting(args="the"):
+  if(len(args)==0):
+    args = "the"
+  print("ARGS:", args)
+  with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&departmentId=11&isHighlight=true&q={}".format(args)) as url:
+    data = json.loads(url.read().decode())
+    if(data['objectIDs'] is None):
+      print("No paintings with query found")
+      return choose_painting("the")
+    max_index = len(data['objectIDs'])
+    print(max_index)
+    painting_id = data['objectIDs'][random.randint(0, max_index)-1]
+    
+  print(painting_id)
+  with urllib.request.urlopen("https://collectionapi.metmuseum.org/public/collection/v1/objects/{}".format(painting_id)) as url:
+    data = json.loads(url.read().decode())
+    print(data["primaryImage"])
+    print(data["title"])
+    print(data["artistDisplayName"])
+    link = data["primaryImage"]
+    painter = data["artistDisplayName"]
+    title = data["title"]
+    date = data["objectDate"]
+    if(data["primaryImage"] == "" or data["title"] == "" or data["artistDisplayName"]==""):
+      return choose_painting(args)
+
+  return painter, title, date, link
+
+
+
+def choose_painting2(args=""):
+  args = args.split("-")
+  if(len(args) != 2 or not args[0].isdigit() or not args[1].isdigit()):
+    args = ""
+  df=pd.read_csv("databases/catalog.csv")
+  df = df[df.FORM == "painting"]
+  if(args != ""):
+    print(args[0], args[1])
+    df2 = df.copy()
+    df2 = df2[df2['DATE'].apply(lambda x: str(x).isdigit())]
+    df2["DATE"] = pd.to_numeric(df2["DATE"])
+    df2 = df2[df2['DATE'].between(int(args[0]), int(args[1]), 'both')]
+    if(len(df2.index) == 0):
+      print("Nothing in the range {} to {}".format(args[0], args[1]))
+      df2 = df
+    else:
+      df = df2
+  row = df.sample().iloc[0]
+  print(row)
+  link = row["URL"].replace("/html/", "/art/").replace(".html", ".jpg")
+  painter = row["AUTHOR"]
+  title = row["TITLE"]
+  date = row["DATE"]
+  print(painter, title, date, link)
+  return painter, title, date, link
+
+
+
+def choose_painting3(args=""):
+  args = args.split("-")
+  if(len(args) != 2 or not args[0].isdigit() or not args[1].isdigit()):
+    args = ""
+  df=pd.read_csv("databases/artists.csv")
+  if(args != ""):
+    print(args[0], args[1])
+    df2 = df.copy()
+    df2 = df2[df2['YEAR'].apply(lambda x: str(x).isdigit())]
+    df2["YEAR"] = pd.to_numeric(df2["YEAR"])
+    df2 = df2[df2['YEAR'].between(int(args[0]), int(args[1]), 'both')]
+    if(len(df2.index) == 0):
+      print("Nothing in the range {} to {}".format(args[0], args[1]))
+      df2 = df
+    else:
+      df = df2
+  row = df.sample().iloc[0]
+  print(row)
+  link = row["LINK"]
+  painter = row["ARTIST"]
+  title = row["TITLE"]
+  date = row["YEAR"]
+  print(painter, title, date, link)
+  return painter, title, date, link
+  
+  
+  
+  
+  
