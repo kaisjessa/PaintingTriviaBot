@@ -72,7 +72,7 @@ def choose_painting3(args=""):
   args = args.split("-")
   if(len(args) != 2 or not args[0].isdigit() or not args[1].isdigit()):
     args = ""
-  df=pd.read_csv("databases/artists.csv")
+  df=pd.read_csv("databases/artists_filtered.csv")
   if(args != ""):
     print(args[0], args[1])
     df2 = df.copy()
@@ -92,8 +92,14 @@ def choose_painting3(args=""):
   date = row["YEAR"]
   print(painter, title, date, link)
   return painter, title, date, link
-  
-  
-  
-  
-  
+
+def filter_file(filepath):
+  db = pd.read_csv(filepath)
+  df2 = db.copy()
+  print(df2.columns)
+  df2 = df2[df2['YEAR'].apply(lambda x: str(x).isdigit())]
+  df2["YEAR"] = pd.to_numeric(df2["YEAR"])
+  df2 = df2[df2['YEAR'].between(0, 2022, 'both')]
+  df2.to_csv('databases/artists_filtered.csv', sep=',', encoding='utf-8')
+
+#filter_file("databases/artists.csv")

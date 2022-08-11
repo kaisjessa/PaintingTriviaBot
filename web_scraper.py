@@ -51,8 +51,9 @@ def is_valid(url):
     return False
 
 def make_file():
-  with open('databases/artists.csv', 'w') as f:
+  with open('databases/artists1.csv', 'a') as f:
     f.write("ARTIST,TITLE,YEAR,LINK")
+    f.write("\n")
     for i in range(len(artists)):
       artist = artists[i]
       print(artist)
@@ -75,4 +76,4 @@ def make_file():
           f.write(entry)
           f.write('\n')
 
-make_file()
+#make_file()
