@@ -192,7 +192,7 @@ async def on_message(message):
           artist, title, date, link = choose_painting3(easy, query)
           while(not is_valid(link)):
             artist, title, date, link = choose_painting3(easy, query)
-          name = str(title).replace(" ", "").lower()
+          name = str(title).split(" / ")[0].replace(" ", "").lower()
           os.makedirs('./images/2{}'.format(name))
           r = requests.get(link, stream=True)
           r.raw.decode_content = True
@@ -363,7 +363,7 @@ async def on_message(message):
           artist, title, date, link = choose_painting3(easy)
           while(not is_valid(link)):
             artist, title, date, link = choose_painting3(easy)
-          name = str(title).replace(" ", "").lower()
+          name = str(title).split(" / ")[0].replace(" ", "").lower()
           os.makedirs('./images/3{}'.format(name))
           r = requests.get(link, stream=True)
           r.raw.decode_content = True
