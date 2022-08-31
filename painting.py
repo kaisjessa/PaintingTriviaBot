@@ -78,10 +78,12 @@ def choose_painting3(easy = False, args=""):
   args = args.split("-")
   if(len(args) != 2 or not args[0].isdigit() or not args[1].isdigit()):
     args = ""
-  if(easy):
+  if(easy == 0):
     file = "databases/easy.csv"
-  else:
+  elif(easy == 1):
     file = "databases/harder_shuffled.csv"
+  else:
+    file = "databases/extreme.csv"
   df=pd.read_csv(file)
   df2 = df.copy()
   if(args != ""):

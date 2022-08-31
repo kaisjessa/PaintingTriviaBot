@@ -13,6 +13,8 @@ from keep_alive import keep_alive
 
 active_channels = []
 developer_id = int(os.environ['developer_id'])
+artist_dict = {True: "Artist", False: "Title"}
+easy_dict = {0: "Easy", 1: "Hard", 2: "Extreme"}
 
 # help_message = '\n'.join(["Type **.start [artist/title] [optional crop] [optional hard] [optional startyear-endyear]**", "E.g., *.start title crop 1800-1900*, *.start artist hard*", "End your game with **.end**, check your score with **.score**, skip questions in the cropped game with **.skip**", "Please note the default dataset has been cleaned, but the hard dataset has not (and will not), so play at your own risk of intense frustration"])
 
@@ -24,7 +26,11 @@ def is_valid(url):
   except:
     return False
 
-client = discord.Client()
+try:
+  client = discord.Client()
+except:
+  time.sleep(10)
+  os.system("kill 1")
 
 @client.event
 async def on_ready():
@@ -56,8 +62,8 @@ async def on_message(message):
   if(message.content.startswith('.help')):
     #await message.channel.send(help_message)
     embed=discord.Embed(title="Help Menu")
-    embed.add_field(name=".start [artist/title] [optional crop] [optional hard] [optional startyear-endyear]", value="Examples: .start title crop 1800-1900, .start artist hard\n.end to end your game\n.skip to skip questions (in cropped)", inline=False)
-    embed.add_field(name=".multiplayer [artist/title] [optional hard] [optional num-questions]", value="Examples: .multiplayer artist hard, .multiplayer title 20\nIf not specified, num-questions is 10 by default\n .pause to pause the game\n .skip to skip a question\n .end to end the game (can only be done by the player who started it)", inline=False)
+    embed.add_field(name=".start [artist/title] [optional crop] [optional hard/extreme] [optional startyear-endyear]", value="Examples: .start title crop 1800-1900, .start artist extreme\n.end to end your game\n.skip to skip questions (in cropped)", inline=False)
+    embed.add_field(name=".multiplayer [artist/title] [optional hard/extreme] [optional num-questions]", value="Examples: .multiplayer artist hard, .multiplayer title 20\nIf not specified, num-questions is 10 by default\n .pause to pause the game\n .skip to skip a question\n .end to end the game (can only be done by the player who started it)", inline=False)
     await message.channel.send(embed=embed)
 
   # uncropped game
@@ -527,7 +533,7 @@ async def on_message(message):
     crop = False
     use_artist = False
     valid = True
-    easy = True
+    easy = 0
   
     if(msg.startswith("artist")):
       use_artist = True
@@ -546,10 +552,13 @@ async def on_message(message):
       crop = False
       
     if(msg.startswith("hard")):
-      easy = False
+      easy = 1
       msg = msg[len("hard"):]
+    elif(msg.startswith("extreme")):
+      easy = 2
+      msg = msg[len("extreme"):]
     else:
-      easy = True
+      easy = 0
 
     if(valid):
       query = msg
@@ -570,7 +579,7 @@ async def on_message(message):
     msg = msg.replace(" ", "")
     use_artist = False
     valid = True
-    easy = True
+    easy = 0
     num_questions = 10
   
     if(msg.startswith("artist")):
@@ -584,10 +593,13 @@ async def on_message(message):
       valid = False
       
     if(msg.startswith("hard")):
-      easy = False
+      easy = 1
       msg = msg[len("hard"):]
+    elif(msg.startswith("extreme")):
+      easy = 2
+      msg = msg[len("extreme"):]
     else:
-      easy = True
+      easy = 0
 
     if(len(msg) > 0 and msg.isdigit()):
       num_questions = int(msg)
