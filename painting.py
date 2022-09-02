@@ -81,7 +81,7 @@ def choose_painting3(easy = False, args=""):
   if(easy == 0):
     file = "databases/easy.csv"
   elif(easy == 1):
-    file = "databases/harder_shuffled.csv"
+    file = "databases/hard.csv"
   else:
     file = "databases/extreme.csv"
   df=pd.read_csv(file)
