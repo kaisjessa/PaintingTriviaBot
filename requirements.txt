@@ -1,4 +1,4 @@
-aiohttp @ https://files.pythonhosted.org/packages/a6/76/f18138b0ff84fcd939667a2efc2e1b49c871299f9091f84c06bb4c350c01/aiohttp-3.7.4.post0-cp39-cp39-manylinux2014_x86_64.whl#sha256=79ebfc238612123a713a457d92afb4096e2148be17df6c50fb9bf7a81c2f8013
+aiohttp @ https://files.pythonhosted.org/packages/a6/76/f18138b0ff84fcd939667a2efc2e1b49c871299f9091f84c06bb4c350c01/aiohttp-3.7.4.post0-cp38-cp38-manylinux2014_x86_64.whl#sha256=79ebfc238612123a713a457d92afb4096e2148be17df6c50fb9bf7a81c2f8013
 async-timeout @ https://files.pythonhosted.org/packages/e1/1e/5a4441be21b0726c4464f3f23c8b19628372f606755a9d2e46c187e65ec4/async_timeout-3.0.1-py3-none-any.whl#sha256=4291ca197d287d274d0b6cb5d6f8f8f82d434ed288f962539ff18cc9012f9ea3
 attrs @ file:///home/runner/.cache/pypoetry/artifacts/ce/c5/12/8fd5b4b1dc80042f7e01fbe2ff237c1b919916077e31ba1af981b6e970/attrs-21.4.0-py2.py3-none-any.whl
 backports.entry-points-selectable==1.1.1
@@ -33,12 +33,12 @@ jeepney==0.7.1
 Jinja2 @ file:///home/runner/.cache/pypoetry/artifacts/f1/c2/59/cce837c517febce44ec6b5d0e64cfe84818df1521fdb524861ce1114f4/Jinja2-3.1.2-py3-none-any.whl
 keyring==21.8.0
 lockfile==0.12.2
-MarkupSafe @ file:///home/runner/.cache/pypoetry/artifacts/88/0a/95/ac2c115c8bb7dfdc50b353cd4080e4d749fd35e75c623094e3f6d5ef9c/MarkupSafe-2.1.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+MarkupSafe @ file:///home/runner/.cache/pypoetry/artifacts/88/0a/95/ac2c115c8bb7dfdc50b353cd4080e4d749fd35e75c623094e3f6d5ef9c/MarkupSafe-2.1.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 msgpack==1.0.2
-multidict @ file:///home/runner/.cache/pypoetry/artifacts/d4/f2/19/e92b8d780e4d481ca2e4dc917e50941c793d8b8481ffe37410dab9075a/multidict-6.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-numpy @ file:///home/runner/.cache/pypoetry/artifacts/0a/f1/63/4e86e206dd78b5ffa1d0b33299c8275c3e1a2411fac9d63320ce69de5f/numpy-1.22.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+multidict @ file:///home/runner/.cache/pypoetry/artifacts/d4/f2/19/e92b8d780e4d481ca2e4dc917e50941c793d8b8481ffe37410dab9075a/multidict-6.0.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+numpy @ file:///home/runner/.cache/pypoetry/artifacts/0a/f1/63/4e86e206dd78b5ffa1d0b33299c8275c3e1a2411fac9d63320ce69de5f/numpy-1.22.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 packaging==20.9
-pandas @ https://files.pythonhosted.org/packages/d1/55/18b00a5426ad8a89944ab93b6b29773a556dc06af8b53a29031f861009e3/pandas-1.4.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl#sha256=6dfbf16b1ea4f4d0ee11084d9c026340514d1d30270eaa82a9f1297b6c8ecbf0
+pandas @ https://files.pythonhosted.org/packages/d1/55/18b00a5426ad8a89944ab93b6b29773a556dc06af8b53a29031f861009e3/pandas-1.4.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl#sha256=6dfbf16b1ea4f4d0ee11084d9c026340514d1d30270eaa82a9f1297b6c8ecbf0
 parso==0.8.3
 pastel==0.2.1
 pexpect==4.8.0
@@ -76,5 +76,5 @@ webencodings==0.5.1
 Werkzeug @ https://files.pythonhosted.org/packages/c0/93/d6d60870e47162ea6a1bbdd787649eea776b2a70618dd66ed87cb2238543/Werkzeug-2.2.1-py3-none-any.whl#sha256=7e1db6a5ba6b9a8be061e47e900456355b8714c0f238b0313f53afce1a55a79a
 yapf==0.31.0
 yarg==0.1.9
-yarl @ file:///home/runner/.cache/pypoetry/artifacts/1c/b1/ab/060bfb7dbc4a037102a22a2171f5f19ccec8bf7338a6c23c02796edd0d/yarl-1.7.2-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+yarl @ file:///home/runner/.cache/pypoetry/artifacts/1c/b1/ab/060bfb7dbc4a037102a22a2171f5f19ccec8bf7338a6c23c02796edd0d/yarl-1.7.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
 zipp @ file:///home/runner/.cache/pypoetry/artifacts/50/a3/cb/f403cce17fb5613b5ff8e058b2f694d598def62f2a71258897748e48df/zipp-3.8.0-py3-none-any.whl
