@@ -49,7 +49,7 @@ def choose_painting(message, easy, query):
         suffix = '.jpeg'
       elif(link.endswith('.png')):
         suffix = '.png'
-      filepath = './images/{}/{}'.format(message.channel.id, name) + '/' + name + suffix
+      filepath = './images/{}/{}'.format(message.channel.id, name) + '/' + "image" + suffix
       with open(filepath, 'wb') as f:
         shutil.copyfileobj(r.raw, f)
       worked = True
