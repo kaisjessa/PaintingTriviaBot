@@ -43,7 +43,6 @@ parso==0.8.3
 pastel==0.2.1
 pexpect==4.8.0
 pillow==9.2.0
-pip==21.2.dev0
 pipreqs-amasad==0.4.10
 pkginfo==1.7.1
 platformdirs==2.4.0
