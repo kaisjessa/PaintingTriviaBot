@@ -186,7 +186,7 @@ async def cropped_game(message, use_artist, easy, query):
     sizes = [0.05, 0.1, 0.2, 0.3, 0.5, 1.0]
     skip = False
     # loop for cropped images
-    print(i, correct, terminate, skip)
+    #print(i, correct, terminate, skip)
     while(i < 5 and not correct and not terminate and not skip):
       i += 1
       # get filepath for a cropped image
