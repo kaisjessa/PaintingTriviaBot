@@ -10,6 +10,9 @@ import time
 from fuzzywuzzy import fuzz
 from painting import choose_painting3, cropper
 from keep_alive import keep_alive
+# from boto.s3.connection import S3Connection
+
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 active_channels = []
 developer_id = int(os.environ['developer_id'])
