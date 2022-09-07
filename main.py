@@ -602,7 +602,7 @@ async def on_message(message):
       print("{} is ending multiplayer, Difficulty={}".format(message.author.name, str(easy)))
         
 
-# keep_alive()
+keep_alive()
 # try:
 #   client.run(TOKEN)
 #   print("Bot running")
