@@ -486,7 +486,8 @@ async def on_ready():
   # clear active channels
   active_channels = []
   # clear all image subfolders
-  shutil.rmtree('./images/')
+  if(os.path.isdir('./images/')):
+    shutil.rmtree('./images/')
   os.makedirs('./images/')
   await client.change_presence(activity=discord.Game(name=".help for info!"))
 
