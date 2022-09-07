@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.heroku
     pkgs.vim
     pkgs.python38Full
   ];
