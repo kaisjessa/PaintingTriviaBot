@@ -41,11 +41,18 @@ def choose_painting(message, easy, query):
       os.makedirs('./images/{}/{}'.format(message.channel.id, name))
       r = requests.get(link, stream=True)
       r.raw.decode_content = True
-      filepath = './images/{}/{}'.format(message.channel.id, name) + '/' + name + '.jpg'
+      suffix = '.jpg'
+      if(link.endswith('.jpeg')):
+        suffix = '.jpeg'
+      elif(link.endswith('.png')):
+        suffix = '.png'
+      filepath = './images/{}/{}'.format(message.channel.id, name) + '/' + name + suffix
       with open(filepath, 'wb') as f:
         shutil.copyfileobj(r.raw, f)
       worked = True
   except:
+    with open("errors.log", "a") as f:
+      f.write("{} did not work".format(link))
     print("{} did not work".format(link))
     worked = False
   return artist, title, date, link, filepath
@@ -314,6 +321,11 @@ async def multiplayer_game(message, use_artist, easy, num_questions):
   while(j < num_questions):
     j += 1
     worked = False
+    if(j > 1):
+      scores_embed = discord.Embed(title="Scores")
+      for p in sorted(user_scores.items(), key=lambda item: item[1][0], reverse=True):
+        scores_embed.add_field(name = p[0], value="**" + str(p[1][0]) + "**" + " ({}/{}/{})".format(p[1][1], p[1][2], p[1][3]), inline=False)
+      await message.channel.send(embed=scores_embed)
     await message.channel.send("Loading next artwork, commands not accepted during this time...")
     artist, title, date, link, filepath = choose_painting(message, easy, "")
     if(use_artist):
@@ -425,11 +437,11 @@ async def multiplayer_game(message, use_artist, easy, num_questions):
             answer_embed.add_field(name = "Title", value=title, inline=True)
             answer_embed.add_field(name = "Date", value=date, inline=True)
             await message.channel.send(embed=answer_embed)
-            if(j < num_questions):
-              scores_embed = discord.Embed(title="Scores")
-              for p in sorted(user_scores.items(), key=lambda item: item[1][0], reverse=True):
-                scores_embed.add_field(name = p[0], value="**" + str(p[1][0]) + "**" + " ({}/{}/{})".format(p[1][1], p[1][2], p[1][3]), inline=False)
-              await message.channel.send(embed=scores_embed)
+            # if(j < num_questions):
+            #   scores_embed = discord.Embed(title="Scores")
+            #   for p in sorted(user_scores.items(), key=lambda item: item[1][0], reverse=True):
+            #     scores_embed.add_field(name = p[0], value="**" + str(p[1][0]) + "**" + " ({}/{}/{})".format(p[1][1], p[1][2], p[1][3]), inline=False)
+            #   await message.channel.send(embed=scores_embed)
             shutil.rmtree('./images/{}'.format(message.channel.id))
             buzzes = []
           else:
@@ -590,11 +602,13 @@ async def on_message(message):
       print("{} is ending multiplayer, Difficulty={}".format(message.author.name, str(easy)))
         
 
-try:
-  keep_alive()
-  client.run(TOKEN)
-  print("Bot running")
-except:
-  print("Attempting to restart...")
-  time.sleep(10)
-  os.system("kill 1")
+# keep_alive()
+# try:
+#   client.run(TOKEN)
+#   print("Bot running")
+# except:
+#   print("Attempting to restart...")
+#   #time.sleep(5)
+#   os.system("kill 1")
+
+client.run(TOKEN)
