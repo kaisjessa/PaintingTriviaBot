@@ -456,9 +456,12 @@ async def multiplayer_game(message, use_artist, easy, num_questions):
             else:
               await msg.channel.send("**Incorrect!** No penalty")
         except:
-          await buzz.channel.send("**Out of time!** -5")
-          user_scores[msg.author.name][3] += 1
-          user_scores[msg.author.name][0] -= 5
+          if(i != 5):
+            await buzz.channel.send("**Out of time!** -5")
+            user_scores[msg.author.name][3] += 1
+            user_scores[msg.author.name][0] -= 5
+          else:
+            await buzz.channel.send("**Out of time!** No penalty")
           change = False
 
     if(not correct and (change or remaining_time <= 0)):
